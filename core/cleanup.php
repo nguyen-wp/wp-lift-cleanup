@@ -46,6 +46,9 @@ class LIFTCleanUPS {
         if($this->attrs['removeGotoLogin']) {
             add_action('login_head', 'LIFTCleanUPS::removeGotoLogin');
         };
+        if($this->attrs['removeWidgetBlock']) {
+            add_filter( 'use_widgets_block_editor', '__return_false' );
+        };
         if($this->attrs['removeDashboardbyID']) {
             $str = preg_replace("/\s+/", "", $this->attrs['removeDashboardbyID']);
             $arr = array_unique(explode(",",$str));
@@ -160,6 +163,7 @@ function ___lift_clearUpSystem() {
         'removeAdminBar' => carbon_get_theme_option('___lift_remove_admin_bar') ? true: false,
         'removeAdminText' => carbon_get_theme_option('___lift_remove_admin_text') ? true: false,
         'removeGotoLogin' => carbon_get_theme_option('___lift_remove_goto') ? true: false,
+        'removeWidgetBlock' => carbon_get_theme_option('___lift_disable_widget_block_editor') ? true: false,
 
         'removeIncoming' => carbon_get_theme_option('___lift_remove_incoming_links') ? true: false,
         'removePlugins' => carbon_get_theme_option('___lift_remove_plugins') ? true: false,
